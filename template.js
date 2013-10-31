@@ -27,8 +27,8 @@ exports.template = function(grunt, init, done) {
     init.prompt( 'version', '0.0.1' ),
     init.prompt( 'licenses' ),
     init.prompt( 'author_name', 'Usability Dynamics' ),
-    init.prompt( 'author_email', 'info@usabilitydynamics.com' ),
-    init.prompt( 'author_url', 'http://usabilitydynamics.com' ),
+    init.prompt( 'author_email', 'info@UsabilityDynamics.com' ),
+    init.prompt( 'author_url', 'http://UsabilityDynamics.com' ),
     init.prompt( 'node_version', '>=0.10.21' )
 
   ], function( err, props ) {
@@ -48,19 +48,17 @@ exports.template = function(grunt, init, done) {
     props.contributors = [
       {
         "name": "Andy Potanin",
-        "email": "andy.potanin@usabilitydynamics.com",
-        "url": "http://usabilitydynamics.com"
+        "email": "andy.potanin@UsabilityDynamics.com",
+        "url": "http://UsabilityDynamics.com"
       }
     ];
 
     props.dependencies = {
-      "auto": "*",
-      "request": "*",
-      "lodash": "*",
-      "abstract": "usabilitydynamics/abstract",
-      "advanced-require": "usabilitydynamics/advanced-require",
-      "object-settings": "usabilitydynamics/object-settings",
-      "object-emitter": "usabilitydynamics/object-emitter"
+      "auto": "UsabilityDynamics/node-auto",
+      "abstract": "UsabilityDynamics/node-abstract",
+      "advanced-require": "UsabilityDynamics/node-advanced-require",
+      "object-settings": "UsabilityDynamics/node-object-settings",
+      "object-emitter": "UsabilityDynamics/node-object-emitter"
     };
 
     props.devDependencies = {
@@ -80,12 +78,12 @@ exports.template = function(grunt, init, done) {
 
     props.repo = {
       type: 'git',
-      url: 'git://github.com/usabilitydynamics/node-' + props.name
+      url: 'git://github.com/UsabilityDynamics/node-' + props.name
     };
 
-    props.homepage = 'http://github.com/usabilitydynamics/node-' + props.name;
+    props.homepage = 'http://github.com/UsabilityDynamics/node-' + props.name;
 
-    props.bugs = 'http://github.com/usabilitydynamics/node-' + props.name + '/issues';
+    props.bugs = 'http://github.com/UsabilityDynamics/node-' + props.name + '/issues';
 
     props.copyright = "Copyright (c) 2013 Usability Dynamics, Inc.";
 
