@@ -1,27 +1,18 @@
 /*
- * grunt-init-node
- * https://gruntjs.com/
+ * scaffold-module
  *
- * Copyright (c) 2013 "Cowboy" Ben Alman, contributors
- * Licensed under the MIT license.
+ *
  */
 
-'use strict';
-
 // Basic template description.
-exports.description = 'Create a Node.js module, including Nodeunit unit tests.';
+exports.description = 'Create a Node.js module.';
 
 // Template-specific notes to be displayed before question prompts.
 exports.notes = '_Project name_ shouldn\'t contain "node" or "js" and should ' +
-  'be a unique ID not already in use at search.npmjs.org.';
+  'be a unique ID not already in use at search.npmjs.org. The "node-" prefix will be used for repository URL.';
 
 // Template-specific notes to be displayed after question prompts.
-exports.after = 'You should now install project dependencies with _npm ' +
-  'install_. After that, you may execute project tasks with _grunt_. For ' +
-  'more information about installing and configuring Grunt, please see ' +
-  'the Getting Started guide:' +
-  '\n\n' +
-  'http://gruntjs.com/getting-started';
+exports.after = '';
 
 // Any existing file or directory matching this wildcard will cause a warning.
 exports.warnOn = '*';
@@ -29,51 +20,90 @@ exports.warnOn = '*';
 // The actual init template.
 exports.template = function(grunt, init, done) {
 
-  init.process({type: 'node'}, [
-    // Prompt for these values.
-    init.prompt('name'),
-    init.prompt('description'),
-    init.prompt('version'),
-    init.prompt('repository'),
-    init.prompt('homepage'),
-    init.prompt('bugs'),
-    init.prompt('licenses'),
-    init.prompt('author_name'),
-    init.prompt('author_email'),
-    init.prompt('author_url'),
-    init.prompt('node_version', '>= 0.8.0'),
-    init.prompt('main'),
-    init.prompt('npm_test', 'grunt nodeunit'),
-    {
-      name: 'travis',
-      message: 'Will this project be tested with Travis CI?',
-      default: 'Y/n',
-      warning: 'If selected, you must enable Travis support for this project in https://travis-ci.org/profile'
-    },
-  ], function(err, props) {
+  init.process( {type: 'module'}, [
+
+    init.prompt( 'name' ),
+
+    init.prompt( 'description' ),
+
+    init.prompt( 'version', '0.0.1' ),
+
+    init.prompt( 'licenses' ),
+
+    init.prompt( 'author_name', 'Usability Dynamics' ),
+
+    init.prompt( 'author_email', 'info@usabilitydynamics.com' ),
+
+    init.prompt( 'author_url', 'http://usabilitydynamics.com' ),
+
+    init.prompt( 'node_version', '>=0.10.21' ),
+
+    init.prompt( 'main' )
+
+  ], function( err, props ) {
+
     props.keywords = [];
-    props.devDependencies = {
-      'grunt-contrib-jshint': '~0.6.4',
-      'grunt-contrib-nodeunit': '~0.2.0',
-      'grunt-contrib-watch': '~0.5.3',
+
+    props.private = true;
+
+    props.main = "index.js";
+
+    props.directories = {
+      "doc": "./static/codex",
+      "bin": "./bin",
+      "lib": "./lib"
     };
-    props.travis = /y/i.test(props.travis);
 
-    // Files to copy (and process).
-    var files = init.filesToCopy(props);
-    if (!props.travis) { delete files['.travis.yml']; }
+    props.contributors = [
+      {
+        "name": "Andy Potanin",
+        "email": "andy.potanin@usabilitydynamics.com",
+        "url": "http://usabilitydynamics.com"
+      }
+    ];
 
-    // Add properly-named license files.
-    init.addLicenseFiles(files, props.licenses);
+    props.dependencies = {
+      "auto": "*",
+      "request": "*",
+      "lodash": "*",
+      "abstract": "usabilitydynamics/abstract",
+      "advanced-require": "usabilitydynamics/advanced-require",
+      "object-settings": "usabilitydynamics/object-settings",
+      "object-emitter": "usabilitydynamics/object-emitter"
+    };
 
-    // Actually copy (and process) files.
-    init.copyAndProcess(files, props);
+    props.devDependencies = {
+      "grunt-markdown": "~0.4.0",
+      "grunt-contrib-symlink": "*",
+      "grunt-contrib-yuidoc": "*",
+      "grunt-contrib-watch": "*",
+      "grunt-contrib-less": "*",
+      "grunt-contrib-concat": "*",
+      "grunt-contrib-clean": "*",
+      "grunt-jscoverage": "0.0.3",
+      "grunt-shell": "*",
+      "mocha": "*",
+      "should": "*",
+      "grunt": "~0.4.1"
+    };
 
-    // Generate package.json file.
-    init.writePackageJSON('package.json', props);
+    props.repo = {
+      type: 'git',
+      url: 'git://github.com/usabilitydynamics/node-' + props.name
+    };
 
-    // All done!
+    props.homepage = 'http://github.com/usabilitydynamics/node-' + props.name;
+
+    props.bugs = 'http://github.com/usabilitydynamics/node-' + props.name + '/issues';
+
+    props.copyright = "Copyright (c) 2013 Usability Dynamics, Inc.";
+
+    init.copyAndProcess( init.filesToCopy( props ), props );
+
+    init.writePackageJSON( 'package.json', props );
+
     done();
-  });
+
+  } );
 
 };

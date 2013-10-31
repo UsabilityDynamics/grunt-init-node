@@ -1,48 +1,111 @@
-'use strict';
+/**
+ * Cluster Build
+ *
+ * The path to the Vendor Repository Directory should be stored in the global "VENDOR_REPOSITORY_DIRECTORY" variables.
+ *
+ * @author potanin@UD
+ * @version 0.0.2
+ * @param grunt
+ */
+module.exports = function( grunt ) {
 
-module.exports = function(grunt) {
+  grunt.initConfig( {
 
-  // Project configuration.
-  grunt.initConfig({
-    nodeunit: {
-      files: ['test/**/*_test.js'],
+    pkg: grunt.file.readJSON( 'package.json' ),
+
+    yuidoc: {
+      compile: {
+        name: '<%= pkg.name %>',
+        description: '<%= pkg.description %>',
+        version: '<%= pkg.version %>',
+        url: '<%= pkg.homepage %>',
+        logo: 'http://media.usabilitydynamics.com/logo.png',
+        options: {
+          paths: [ "./bin", "./lib" ],
+          outdir: './static/codex'
+        }
+      }
     },
-    jshint: {
+
+    jscoverage: {
       options: {
-        jshintrc: '.jshintrc'
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib: {
-        src: ['lib/**/*.js']
-      },
-      test: {
-        src: ['test/**/*.js']
-      },
+        inputDirectory: 'lib',
+        outputDirectory: './static/lib-cov',
+        highlight: true
+      }
     },
+
     watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
+      options: {
+        interval: 1000,
+        debounceDelay: 500
       },
-      lib: {
-        files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
-      },
-      test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
-      },
+      docs: {
+        files: [ 'readme.md' ],
+        tasks: [ 'markdown' ]
+      }
     },
+
+    markdown: {
+      all: {
+        files: [ {
+          expand: true,
+          src: 'readme.md',
+          dest: 'static/',
+          ext: '.html'
+        }
+        ],
+        options: {
+          // preCompile: function preCompile( src, context ) {},
+          // postCompile: function postCompile( src, context ) {},
+          templateContext: {},
+          markdownOptions: {
+            highlight: 'manual',
+            gfm: true,
+            codeLines: {
+              before: '<span>',
+              after: '</span>'
+            }
+          }
+        }
+      }
+    },
+
+    clean: [],
+
+    shell: {
+      install: {},
+      update: {}
+    }
+
   });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  // Load tasks
+  grunt.loadNpmTasks( 'grunt-markdown' );
+  grunt.loadNpmTasks( 'grunt-jscoverage' );
+  grunt.loadNpmTasks( 'grunt-contrib-symlink' );
+  grunt.loadNpmTasks( 'grunt-contrib-yuidoc' );
+  grunt.loadNpmTasks( 'grunt-contrib-watch' );
+  grunt.loadNpmTasks( 'grunt-contrib-less' );
+  grunt.loadNpmTasks( 'grunt-contrib-clean' );
+  grunt.loadNpmTasks( 'grunt-shell' );
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  // Build Assets
+  grunt.registerTask( 'default', [ 'markdown', 'yuidoc', 'jscoverage' ] );
+
+  // Install environment
+  grunt.registerTask( 'install', [ 'shell:pull', 'shell:install', 'yuidoc'  ] );
+
+  // Update Environment
+  grunt.registerTask( 'update', [ 'shell:pull', 'shell:update', 'yuidoc'   ] );
+
+  // Prepare distribution
+  grunt.registerTask( 'dist', [ 'clean', 'yuidoc', 'markdown'  ] );
+
+  // Update Documentation
+  grunt.registerTask( 'doc', [ 'yuidoc', 'markdown' ] );
+
+  // Developer Mode
+  grunt.registerTask( 'dev', [ 'watch' ] );
 
 };

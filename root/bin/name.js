@@ -1,6 +1,5 @@
 /*
  * {%= name %}
- * {%= homepage %}
  *
  */
 exports.awesome = function() {
