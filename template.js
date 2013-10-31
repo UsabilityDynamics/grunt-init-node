@@ -23,22 +23,13 @@ exports.template = function(grunt, init, done) {
   init.process( {type: 'module'}, [
 
     init.prompt( 'name' ),
-
     init.prompt( 'description' ),
-
     init.prompt( 'version', '0.0.1' ),
-
     init.prompt( 'licenses' ),
-
     init.prompt( 'author_name', 'Usability Dynamics' ),
-
     init.prompt( 'author_email', 'info@usabilitydynamics.com' ),
-
     init.prompt( 'author_url', 'http://usabilitydynamics.com' ),
-
-    init.prompt( 'node_version', '>=0.10.21' ),
-
-    init.prompt( 'main' )
+    init.prompt( 'node_version', '>=0.10.21' )
 
   ], function( err, props ) {
 
@@ -46,7 +37,7 @@ exports.template = function(grunt, init, done) {
 
     props.private = true;
 
-    props.main = "index.js";
+    props.main = props.name + ".js";
 
     props.directories = {
       "doc": "./static/codex",
@@ -98,7 +89,11 @@ exports.template = function(grunt, init, done) {
 
     props.copyright = "Copyright (c) 2013 Usability Dynamics, Inc.";
 
-    init.copyAndProcess( init.filesToCopy( props ), props );
+    var _files = init.filesToCopy( props );
+
+    init.copyAndProcess( _files , props );
+
+    init.addLicenseFiles( _files , props.licenses);
 
     init.writePackageJSON( 'package.json', props );
 
