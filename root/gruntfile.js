@@ -1,7 +1,5 @@
 /**
- * Cluster Build
- *
- * The path to the Vendor Repository Directory should be stored in the global "VENDOR_REPOSITORY_DIRECTORY" variables.
+ * Node.js Module Build
  *
  * @author potanin@UD
  * @version 0.0.2
@@ -12,6 +10,15 @@ module.exports = function( grunt ) {
   grunt.initConfig( {
 
     pkg: grunt.file.readJSON( 'package.json' ),
+
+    mochacli: {
+      options: {
+        require: [ 'should' ],
+        reporter: 'list',
+        ui: 'exports'
+      },
+      all: [ 'test/*.js' ]
+    },
 
     yuidoc: {
       compile: {
@@ -82,6 +89,7 @@ module.exports = function( grunt ) {
 
   // Load tasks
   grunt.loadNpmTasks( 'grunt-markdown' );
+  grunt.loadNpmTasks( 'grunt-mocha-cli' );
   grunt.loadNpmTasks( 'grunt-jscoverage' );
   grunt.loadNpmTasks( 'grunt-contrib-symlink' );
   grunt.loadNpmTasks( 'grunt-contrib-yuidoc' );
@@ -91,7 +99,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-shell' );
 
   // Build Assets
-  grunt.registerTask( 'default', [ 'markdown', 'yuidoc', 'jscoverage' ] );
+  grunt.registerTask( 'default', [ 'markdown', 'yuidoc', 'jscoverage', 'mochacli' ] );
 
   // Install environment
   grunt.registerTask( 'install', [ 'shell:pull', 'shell:install', 'yuidoc'  ] );
@@ -104,6 +112,9 @@ module.exports = function( grunt ) {
 
   // Update Documentation
   grunt.registerTask( 'doc', [ 'yuidoc', 'markdown' ] );
+
+  // Run Tests
+  grunt.registerTask( 'test', [ 'mochacli' ] );
 
   // Developer Mode
   grunt.registerTask( 'dev', [ 'watch' ] );

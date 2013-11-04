@@ -33,11 +33,11 @@ exports.template = function(grunt, init, done) {
 
   ], function( err, props ) {
 
-    props.keywords = [];
+    props.keywords = [ 'node', 'module' ];
 
     props.private = true;
 
-    props.main = props.name + ".js";
+    props.main = "lib/". props.name + ".js";
 
     props.directories = {
       "doc": "./static/codex",
@@ -55,8 +55,6 @@ exports.template = function(grunt, init, done) {
 
     props.dependencies = {
       "auto": "UsabilityDynamics/node-auto",
-      "abstract": "UsabilityDynamics/node-abstract",
-      "advanced-require": "UsabilityDynamics/node-advanced-require",
       "object-settings": "UsabilityDynamics/node-object-settings",
       "object-emitter": "UsabilityDynamics/node-object-emitter"
     };
@@ -64,6 +62,7 @@ exports.template = function(grunt, init, done) {
     props.devDependencies = {
       "grunt-markdown": "~0.4.0",
       "grunt-contrib-symlink": "*",
+      "grunt-mocha-cli": "~1.3.0",
       "grunt-contrib-yuidoc": "*",
       "grunt-contrib-watch": "*",
       "grunt-contrib-less": "*",
@@ -97,6 +96,6 @@ exports.template = function(grunt, init, done) {
 
     done();
 
-  } );
+  });
 
 };
