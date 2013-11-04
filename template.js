@@ -38,7 +38,7 @@ exports.template = function(grunt, init, done) {
 
     props.private = true;
 
-    props.main = "lib/". props.name + ".js";
+    props.main = "lib/" + props.name + ".js";
 
     props.directories = {
       "doc": "./static/codex",
@@ -55,6 +55,7 @@ exports.template = function(grunt, init, done) {
     ];
 
     props.dependencies = {
+      "commander": "2.0.0",
       "auto": "UsabilityDynamics/node-auto",
       "object-settings": "UsabilityDynamics/node-object-settings",
       "object-emitter": "UsabilityDynamics/node-object-emitter"

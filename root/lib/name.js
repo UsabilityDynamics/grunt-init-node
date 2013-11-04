@@ -23,8 +23,6 @@ Object.defineProperties( {%= name %}.prototype, {
      */
     value: function some_action() {
 
-      // @chainable
-      return this;
     },
     enumerable: true,
     configurable: true,
