@@ -1,7 +1,8 @@
 /*
- * scaffold-module
+ * Node.js Scaffolding Template
  *
  *
+ * @version 1.0.0
  */
 
 // Basic template description.
