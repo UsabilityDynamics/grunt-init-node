@@ -55,31 +55,31 @@ exports.template = function(grunt, init, done) {
     ];
 
     props.dependencies = {
-      "commander": "2.0.0",
-      "auto": "UsabilityDynamics/node-auto",
-      "object-settings": "UsabilityDynamics/node-object-settings",
-      "object-emitter": "UsabilityDynamics/node-object-emitter"
+      "auto": "git+ssh://git@github.com:UsabilityDynamics/node-auto#master",
+      "commander": "~2.0.0",
+      "lodash": "~2.2.1",
+      "advanced-require": "git+ssh://git@github.com:UsabilityDynamics/node-advanced-require#master",
+      "object-settings": "git+ssh://git@github.com:UsabilityDynamics/node-object-settings#master",
+      "object-emitter": "git+ssh://git@github.com:UsabilityDynamics/node-object-emitter#master",
+      "object-validation": "git+ssh://git@github.com:UsabilityDynamics/node-object-validation#master"
     };
 
     props.devDependencies = {
+      "grunt-contrib-symlink": "~0.2.0",
+      "grunt-contrib-yuidoc": "~0.5.0",
+      "grunt-contrib-watch": "~0.5.3",
+      "grunt-contrib-less": "~0.8.1",
+      "grunt-contrib-concat": "~0.3.0",
+      "grunt-contrib-clean": "~0.5.0",
+      "grunt-jscoverage": "~0.0.3",
       "grunt-markdown": "~0.4.0",
-      "grunt-contrib-symlink": "*",
       "grunt-mocha-cli": "~1.3.0",
-      "grunt-contrib-yuidoc": "*",
-      "grunt-contrib-watch": "*",
-      "grunt-contrib-less": "*",
-      "grunt-contrib-concat": "*",
-      "grunt-contrib-clean": "*",
-      "grunt-jscoverage": "0.0.3",
-      "grunt-shell": "*",
-      "mocha": "*",
-      "should": "*",
-      "grunt": "~0.4.1"
+      "grunt-shell": "~0.5.0"
     };
 
     props.repo = {
       type: 'git',
-      url: 'git://github.com/UsabilityDynamics/node-' + props.name
+      url: 'git@github.com:UsabilityDynamics/node-' + props.name
     };
 
     props.homepage = 'http://github.com/UsabilityDynamics/node-' + props.name;

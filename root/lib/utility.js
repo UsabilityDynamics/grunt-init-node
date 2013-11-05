@@ -1,21 +1,22 @@
 /**
  * Utility Methods
  *
+ * @class Utility
  * @constructor
  */
 function Utility() {
-
+  return Object.keys( arguments ) ? require( 'lodash' ).pick.apply( null, [ Utility, Array.prototype.slice.call( arguments ) ] ) : Utility;
 }
 
 Object.defineProperties( module.exports = Utility, {
-  method: {
+  noop: {
     /**
-     * Some Utility Method
+     * Placeholder Method
      *
+     * @for Utility
+     * @method noop
      */
-    value: function method() {
-
-    },
+    value: function noop() {},
     enumerable: true,
     configurable: true,
     writable: true
