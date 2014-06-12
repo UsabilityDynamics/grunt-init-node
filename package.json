@@ -1,0 +1,17 @@
+{
+  "name": "scaffold-module",
+  "description": "Audit-",
+  "version": "0.1.0",
+  "homepage": "https://github.com/UsabilityDynamics/scaffold-module",
+  "author": {
+    "name": "Andy Potanin",
+    "email": "andy.potanin@usabilitydynamics.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/UsabilityDynamics/scaffold-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UsabilityDynamics/scaffold-module/issues"
+  }
+}
