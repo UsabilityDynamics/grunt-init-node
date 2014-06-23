@@ -12,6 +12,7 @@ methods:
   - "testMethods"
   - "testClasses"
   - "testStructure"
+  - "debug"
 
 tasks:
   - "scaffold-module"
