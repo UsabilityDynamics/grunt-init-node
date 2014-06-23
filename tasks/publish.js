@@ -4,11 +4,6 @@ module.exports = function( grunt ) {
     
   });
   
-  grunt.registerTask( 'prepublish', function() {
-    
-  });
-  
-  
   function forLater() {
     
     github.authenticate({
