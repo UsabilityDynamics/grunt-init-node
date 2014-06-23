@@ -2,17 +2,14 @@ objectives:
   - "Allow for rapid creation of Node.js Modules."
 
 features:
-  - "This module is added as a devDependency to modules it spawns."
-  - "This module is extended by other scaffold modules."
+  - "Adds as a devDependency to modules it spawns."
+  - "Extendable by other scaffold modules."
+  - "Handles project.yml parsing."
+  - "Exposes several automated Mocha tests to children."
 
 methods:
 
 tasks:
   - "scaffold-module"
-  - "scaffold-module --help"
-  - "scaffold-module install"  
   - "scaffold-module update"
   - "scaffold-module validate"
-  
-resources:
-  ""
