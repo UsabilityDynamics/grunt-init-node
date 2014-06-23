@@ -41,6 +41,7 @@
     "grunt-phpcs": "~0.2.2",
     "grunt-phpunit": "~0.3.3",
     "grunt-shell": "~0.6.0",
+    "grunt-scaffold-module": "git://github.com/UsabilityDynamics/grunt-scaffold-module"
     "mocha-audit-reporter": "UsabilityDynamics/node-mocha-audit-reporter",
     "should": "~4.0.4",
     "yuidocjs": "^0.3.50"

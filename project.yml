@@ -8,8 +8,14 @@ features:
   - "Exposes several automated Mocha tests to children."
 
 methods:
+  - "getProject"  
+  - "testMethods"
+  - "testClasses"
+  - "testStructure"
 
 tasks:
   - "scaffold-module"
+  - "scaffold-module install"
+  - "scaffold-module publish"
   - "scaffold-module update"
   - "scaffold-module validate"
