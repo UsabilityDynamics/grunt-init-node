@@ -14,7 +14,8 @@
     "grunt-template": "^0.2.3",
     "load-grunt-tasks": "^0.6.0",
     "lodash": "^2.4.1",
-    "phantomflow": "^0.3.2"
+    "phantomflow": "^0.3.2",
+    "utils-merge": "~1.0.0"
   },
   "preferGlobal": true,
   "publishConfig": {

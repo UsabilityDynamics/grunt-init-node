@@ -5,7 +5,7 @@
  * @version 1.1.2
  * @param grunt
  */
-module.exports = function build( grunt ) {
+module.exports = function Gruntfile( grunt ) {
 
   grunt.initConfig({
     
@@ -25,7 +25,7 @@ module.exports = function build( grunt ) {
   var findup    = require( 'findup-sync' );
 
   // Determine Paths.
-  var _paths = {
+  module.exports._paths = {
     staticFiles: findup( 'static' )
   };
 
@@ -40,3 +40,6 @@ module.exports = function build( grunt ) {
   grunt.loadTasks( 'tasks' );
   
 };
+
+// Add prototype methods.
+module.exports = require( 'utils-merge' )( module.exports, require( './lib/scaffold-module.js' ) );
