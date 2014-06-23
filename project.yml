@@ -1,0 +1,18 @@
+objectives:
+  - "Allow for rapid creation of Node.js Modules."
+
+features:
+  - "This module is added as a devDependency to modules it spawns."
+  - "This module is extended by other scaffold modules."
+
+methods:
+
+tasks:
+  - "scaffold-module"
+  - "scaffold-module --help"
+  - "scaffold-module install"  
+  - "scaffold-module update"
+  - "scaffold-module validate"
+  
+resources:
+  ""
