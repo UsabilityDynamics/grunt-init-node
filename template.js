@@ -17,11 +17,12 @@ var options = {
 exports.description = 'Create Module.';
 exports.template = function(grunt, init, done) {
 
+
   var prompts = [
     init.prompt( 'name' ),
-    init.prompt( 'repository' ),
     init.prompt( 'version', '0.0.1' ),
-    init.prompt( 'description', 'Module.' )  
+    init.prompt( 'description', 'Module.' ),
+    init.prompt( 'repository' )
   ];
 
   init.process( options, prompts, processCallback );
@@ -34,8 +35,8 @@ exports.template = function(grunt, init, done) {
     init.copyAndProcess( init.filesToCopy( _package ), _package );
 
   	// Empty folders won't be copied over so make them here
-  	grunt.file.mkdir('test/acceptance');
-  	grunt.file.mkdir('static/audits');
+  	grunt.file.mkdir( 'test/acceptance' );
+  	grunt.file.mkdir( 'static/audits' );
 
     // Write Package to Disk.
     init.writePackageJSON( 'package.json', _package );

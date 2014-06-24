@@ -86,36 +86,32 @@ module.exports = function( grunt ) {
 
   });
 
-  // Load tasks
-  grunt.loadNpmTasks( 'grunt-markdown' );
-  grunt.loadNpmTasks( 'grunt-mocha-cli' );
-  grunt.loadNpmTasks( 'grunt-jscoverage' );
-  grunt.loadNpmTasks( 'grunt-contrib-symlink' );
-  grunt.loadNpmTasks( 'grunt-contrib-yuidoc' );
-  grunt.loadNpmTasks( 'grunt-contrib-watch' );
-  grunt.loadNpmTasks( 'grunt-contrib-less' );
-  grunt.loadNpmTasks( 'grunt-contrib-clean' );
-  grunt.loadNpmTasks( 'grunt-shell' );
-
   // Build Assets
-  grunt.registerTask( 'default', [ 'markdown', 'yuidoc', 'jscoverage', 'mochacli' ] );
+  grunt.registerTask( 'default', [ 
+    'markdown', 
+    'yuidoc', 
+    'jscoverage', 
+    'mochacli' 
+  ]);
 
-  // Install environment
-  grunt.registerTask( 'install', [ 'shell:pull', 'shell:install', 'yuidoc'  ] );
+  // Install Environment
+  grunt.registerTask( 'install', function( task ) {
+    
+  });
 
-  // Update Environment
-  grunt.registerTask( 'update', [ 'shell:pull', 'shell:update', 'yuidoc'   ] );
+  // Prepare for Publish.
+  grunt.registerTask( 'prepublish', function( task ) {
+    
+  });
 
-  // Prepare distribution
-  grunt.registerTask( 'dist', [ 'clean', 'yuidoc', 'markdown'  ] );
+  // After Publish.
+  grunt.registerTask( 'publish', function( task ) {
+    
+  });
 
-  // Update Documentation
-  grunt.registerTask( 'doc', [ 'yuidoc', 'markdown' ] );
-
-  // Run Tests
-  grunt.registerTask( 'test', [ 'mochacli' ] );
-
-  // Developer Mode
-  grunt.registerTask( 'dev', [ 'watch' ] );
+  // Run Tests.
+  grunt.registerTask( 'test', function( task ) {
+    grunt.task.run( 'mochacli' )    
+  });
 
 };

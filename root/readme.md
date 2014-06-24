@@ -1,19 +1,22 @@
+[![Coverage Status](https://img.shields.io/coveralls/{%= git_user %}/{%= git_repo %}.svg)](https://coveralls.io/r/{%= git_user %}/{%= git_repo %})
+[![Stories in Ready](https://badge.waffle.io/usabilitydynamics/{%= git_repo %}.png?label=ready&title=Ready)](https://waffle.io/usabilitydynamics/{%= git_repo %})
+[![Dependency status](https://david-dm.org/{%= git_user %}/{%= git_repo %}.png)](https://david-dm.org/{%= git_user %}/{%= git_repo %}#info=dependencies&view=table)
+
 {%= description %}
 
-## Getting Started
+### Getting Started
 Install the module with: `npm install {%= name %}`
 
 ```javascript
 var {%= js_safe_name %} = require('{%= name %}');
 {%= js_safe_name %}.awesome(); // "awesome"
 ```
-## Usage
 
-## License
+### License
 
 (The MIT License)
 
-Copyright (c) 2013 Usability Dynamics, Inc. &lt;info@usabilitydynamics.com&gt;
+Copyright (c) 2014 Usability Dynamics, Inc. <info@usabilitydynamics.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
