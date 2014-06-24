@@ -1,7 +1,5 @@
 {
-  "bin/name-start.js": "bin/{%= name %}-start.js",
-  "bin/name-stop.js": "bin/{%= name %}-stop.js",
-  "bin/name-status.js": "bin/{%= name %}-status.js",
-  "bin/name-console.js": "bin/{%= name %}-console.js",
+  "bin/name.js": "bin/{%= name %}.js",
+  "test/name.js": "test/{%= name %}.js",
   "lib/name.js": "lib/{%= name %}.js"
 }

@@ -7,10 +7,28 @@
  */
 module.exports = function( grunt ) {
 
-  grunt.initConfig( {
+  // Automatically Load Tasks.
+  require( 'load-grunt-tasks' )( grunt, {
+    pattern: 'grunt-*',
+    config: './package.json',
+    scope: 'devDependencies'
+  });
+  
+  grunt.initConfig({
 
-    pkg: grunt.file.readJSON( 'package.json' ),
+    // Sets generic config settings, callable via grunt.config.get('meta').environment or <%= grunt.config.get("meta").environment %>
+    meta: {
+      name: grunt.file.readJSON( findup( 'package.json' ) ).name,
+      description: grunt.file.readJSON( findup( 'package.json' ) ).description,
+      version: grunt.file.readJSON( findup( 'package.json' ) ).version,
+      homepage: grunt.file.readJSON( findup( 'package.json' ) ).homepage,
+      environment: process.env.NODE_ENV || 'production',
+      ci: process.env.CI || process.env.CIRCLECI ? true : false      
+    }
 
+    // Read Configuration File.
+    config: grunt.file.readJSON( findup( 'package.json' ) ).config,
+    
     mochacli: {
       options: {
         require: [ 'should' ],
@@ -22,10 +40,10 @@ module.exports = function( grunt ) {
 
     yuidoc: {
       compile: {
-        name: '<%= pkg.name %>',
-        description: '<%= pkg.description %>',
-        version: '<%= pkg.version %>',
-        url: '<%= pkg.homepage %>',
+        name: '<%= meta.name %>',
+        description: '<%= meta.description %>',
+        version: '<%= meta.version %>',
+        url: '<%= meta.homepage %>',
         logo: 'http://media.usabilitydynamics.com/logo.png',
         options: {
           paths: [ "./bin", "./lib" ],
