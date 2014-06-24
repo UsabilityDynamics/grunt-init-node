@@ -13,6 +13,7 @@
     "lodash": "^2.4.1",
     "phantomflow": "^0.3.2",
     "utils-merge": "^1.0.0",
+    "veneer-terminal": "git://github.com/UsabilityDynamics/node-veneer-terminal",
     "yamljs": "~0.1.5"
   },
   "preferGlobal": true,
