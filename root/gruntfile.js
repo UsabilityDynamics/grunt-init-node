@@ -7,6 +7,10 @@
  */
 module.exports = function( grunt ) {
 
+  // Require Utility Modules.
+  var joinPath  = require( 'path' ).join;
+  var findup    = require( 'findup-sync' );
+
   // Automatically Load Tasks.
   require( 'load-grunt-tasks' )( grunt, {
     pattern: 'grunt-*',
@@ -24,7 +28,7 @@ module.exports = function( grunt ) {
       homepage: grunt.file.readJSON( findup( 'package.json' ) ).homepage,
       environment: process.env.NODE_ENV || 'production',
       ci: process.env.CI || process.env.CIRCLECI ? true : false      
-    }
+    },
 
     // Read Configuration File.
     config: grunt.file.readJSON( findup( 'package.json' ) ).config,
