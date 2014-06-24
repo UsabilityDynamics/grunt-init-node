@@ -67,18 +67,15 @@ function Create() {
     
     // Should update composer.
     composer: [ 'scaffold', function( done, report ) {
-      //self.log( 'Updating Composer....' );      
+      self.log( 'Updating Composer... (Not Implemented)' );
       done();      
     }],
     
     // Should initialize repository, create a GitHub Wiki and add as a submodule to static/wiki
     github: [ 'npm', 'composer', function( done, report ) {
-      // self.log( 'Setting up GitHub repository.' );      
+      self.log( 'Setting up GitHub repository. (Not Implemented)' );
       done();      
     }]
-    
-    
-    
     
   });
   

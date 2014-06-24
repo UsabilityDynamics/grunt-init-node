@@ -33,7 +33,7 @@ module.exports = function( grunt ) {
     // Read Configuration File.
     config: grunt.file.readJSON( findup( 'package.json' ) ).config,
     
-    mochacli: {
+    mochaTest: {
       options: {
         require: [ 'should' ],
         reporter: 'list',
@@ -113,7 +113,7 @@ module.exports = function( grunt ) {
     'markdown', 
     'yuidoc', 
     'jscoverage', 
-    'mochacli' 
+    'mochaTest' 
   ]);
 
   // Install Environment
@@ -133,7 +133,7 @@ module.exports = function( grunt ) {
 
   // Run Tests.
   grunt.registerTask( 'test', function( task ) {
-    grunt.task.run( 'mochacli' )    
+    grunt.task.run( 'mochaTest' )    
   });
 
 };
