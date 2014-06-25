@@ -5,28 +5,48 @@ require( 'veneer-terminal' ).create( function scaffoldTerminal( error ) {
   var findUp = require( 'findup-sync' );
   var path = require('path');
 
+  // Configure Terminal Settings.
   this.set({
     name: 'scaffold-module',
     version: this.get( 'package.version' ),
     description: this.get( 'package.description' ),
     path: path.dirname( findUp( 'package.json', { cwd: __dirname } ) )
   });  
+
+  // Accepted Arguments.
+  this.option( '-p, --path <path>', 'Path to target directory for scaffolding.', process.cwd() );
+  this.option( '-p, --project <project>', 'Path or URL of project.yml file.' );
+  this.option( '-a, --acceptance <acceptance>', 'Path or URL of acceptance.yml file.' );
   
+  // Accepted Commands.
   this.command( 'create', 'Create new module in current directory from scaffold.' ).action( Create.bind( this ) );
   this.command( 'update',   'Updte existing module' ).action( Update.bind( this ) );
   this.command( 'validate', 'Validate an existing module' ).action( Validate.bind( this ) );
 
 });
 
-function Validate() {  
-  this.write( 'Validating ' + process.cwd() );
+/**
+ *
+ *
+ */
+function Validate( options ) {  
+  this.write( 'Validating ' + options.parent.path );
 }
 
-function Update() {
-    this.write( 'Updating ' + process.cwd() );    
+/**
+ *
+ *
+ */
+function Update( options ) {
+  this.write( 'Updating ' + options.parent.path );
 }
 
-function Create() {
+/**
+ * Create Scaffold
+ *
+ * @todo Create options.parent.path if it does not exist.
+ */
+function Create( options ) {
 
   var spawn = require('child_process').spawn;
   var async = require( 'async' );
@@ -39,7 +59,7 @@ function Create() {
       
       spawn( 'grunt-init', [ self.get( 'path' ), '--no-color' ], {
         end: process.env,
-        cwd: process.cwd(),
+        cwd: options.parent.path,
         stdio: 'inherit',
         encoding: 'utf8'
       }).on( 'close', function( code, signal ) {
@@ -55,7 +75,7 @@ function Create() {
       
       spawn( 'npm', [ 'install' ], {
         end: process.env,
-        cwd: process.cwd(),
+        cwd: options.parent.path,
         stdio: 'inherit',
         encoding: 'utf8'
       }).on( 'close', function() {
