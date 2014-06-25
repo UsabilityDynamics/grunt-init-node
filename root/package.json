@@ -9,6 +9,9 @@
   "engines": {
     "node": ">= 0.10.0"
   },
+  "publishConfig": {
+    "registry": "http://rpm.udx.io"
+  },  
   "scripts": {
     "test": "mocha --ui exports --reporter list",
     "start": "grunt start",
