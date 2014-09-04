@@ -34,4 +34,3 @@ This module contains several useful grunt Tasks, Mocha Tests and regular Methods
 var project = require( 'grunt-scaffold-module' ).getProject();
 console.log( project.features );
 ```
-
